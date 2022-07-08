@@ -1,0 +1,26 @@
+{
+  "name": "party_chat",
+  "version": "1.0.0",
+  "description": "",
+  "engines" : {
+    "node" : "16.14.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "parcel ./src/pages/profile/profile.pug --open",
+    "dev_all": "parcel ./src/pages/*/*.pug --open --public-url ../",
+    "build": "parcel build ./src/pages/*/*.pug",
+    "build_all": "parcel build ./src/pages/*/*.pug --public-url ../",
+    "build_all_2": "parcel build ./src/pages/login/login.pug ./src/pages/registration/registration.pug",
+    "start": "parcel build ./src/pages/*/*.pug --public-url ../ && node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@parcel/transformer-pug": "^2.6.2",
+    "@parcel/transformer-sass": "^2.6.2",
+    "express": "^4.18.1",
+    "parcel": "^2.6.2"
+  }
+}
