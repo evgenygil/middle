@@ -1,22 +1,5 @@
 extends ../../layout/index.pug
 
 block content
-	div.fx.justify-center.items-center.h-100vh
-		form
-			h2 Registration
-			div.input-wrap
-				input(placeholder="First Name", name="first_name", type="text")
-			div.input-wrap
-				input(placeholder="Second Name", name="second_name", type="text")
-			div.input-wrap
-				input(placeholder="Login", name="login", type="text")
-			div.input-wrap
-				input(placeholder="Email", name="email", type="text")
-			div.input-wrap
-				input(placeholder="Phone", name="phone", type="text")
-			div.input-wrap
-				input(placeholder="Password", name="password", type="password")
-			div.input-wrap
-				input(placeholder="Confirm Password", name="confirm_password", type="password")
-			div.input-wrap
-				button Sign Up
+  div.fx.justify-center.items-center.h-100vh
+    include components/form/form.pug

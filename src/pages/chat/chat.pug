@@ -1,7 +1,9 @@
 extends ../../layout/index.pug
 
+block styles
+  link(rel="stylesheet", href="~/src/components/error-page/error-page.scss")
+
+include ../../components/error-page/error-page.pug
+
 block content
-  div.fx.justify-center.items-center.h-100vh
-      div.page-error
-        span.large-text Chat
-        p.subtitle Under construction
+  +error-page("Chat", "Under construction")

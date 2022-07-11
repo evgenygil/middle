@@ -2,25 +2,4 @@ extends ../../layout/index.pug
 
 block content
   div.fx.justify-center.items-center.h-100vh
-    form
-      h2 Edit profile
-      div.input-wrap.fx.justify-center.items-center
-        div.avatar
-      div.input-wrap
-        input(placeholder="First Name", name="avatar", type="file")
-      div.input-wrap
-        input(placeholder="First Name", name="first_name", type="text")
-      div.input-wrap
-        input(placeholder="Second Name", name="second_name", type="text")
-      div.input-wrap
-        input(placeholder="Display Name", name="display_name", type="text")
-      div.input-wrap
-        input(placeholder="Login", name="login", type="text")
-      div.input-wrap
-        input(placeholder="Email", name="email", type="text")
-      div.input-wrap
-        input(placeholder="Phone", name="phone", type="text")
-      div.input-wrap
-        input(placeholder="Old Password", name="oldPassword", type="password")
-      div.input-wrap
-        input(placeholder="New Password", name="newPassword", type="password")
+    include components/form/form.pug
