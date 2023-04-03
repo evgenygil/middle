@@ -4,7 +4,10 @@
         "target": "es2016",
         "declaration": false,
         "module": "commonjs",
-        "strictNullChecks": true,
-        "sourceMap": true
+        "strictNullChecks": false,
+        "sourceMap": true,
+        "noImplicitAny": false,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true
     }
 }
