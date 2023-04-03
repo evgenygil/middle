@@ -1,9 +1,9 @@
-form
+include ../../../../components/input/input
+
+form(id="login_form")
   h2 Login
-  div.input-wrap
-    input(placeholder="Login", name="login", type="text")
-  div.input-wrap
-    input(placeholder="Password", name="password", type="password")
+  + input("login", "text", "Login")
+  + input("password", "password", "Password")
   div.input-wrap.fx.justify-between.items-center
     button Sign In
-    a(href="#") Sign Up
+    a(href="~/src/pages/registration/registration.pug") Sign Up

@@ -1,18 +1,13 @@
-form
+include ../../../../components/input/input
+
+form(id="registration_form")
   h2 Registration
-  div.input-wrap
-    input(placeholder="First Name", name="first_name", type="text")
-  div.input-wrap
-    input(placeholder="Second Name", name="second_name", type="text")
-  div.input-wrap
-    input(placeholder="Login", name="login", type="text")
-  div.input-wrap
-    input(placeholder="Email", name="email", type="text")
-  div.input-wrap
-    input(placeholder="Phone", name="phone", type="text")
-  div.input-wrap
-    input(placeholder="Password", name="password", type="password")
-  div.input-wrap
-    input(placeholder="Confirm Password", name="confirm_password", type="password")
+  + input("first_name", "text", "First Name", "first_name")
+  + input("second_name", "text", "Second Name", "second_name")
+  + input("login", "text", "Login", "login")
+  + input("email", "text", "Email", "email")
+  + input("phone", "text", "Phone", "phone")
+  + input("password", "password", "Password", "password")
+  + input("confirm_password", "password", "Confirm Password", "")
   div.input-wrap
     button Sign Up

@@ -1,0 +1,104 @@
+.chat_page_wrap {
+    width: 100%;
+    justify-content: flex-start;
+    display: flex;
+}
+
+aside {
+    width: 20%;
+    flex: 0 20%;
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    scrollbar-width: none;
+    background-color: #6e9b70;
+    padding: 12px;
+}
+
+.contact_list {
+    width: 100%;
+    overflow-y: auto;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.contact_item {
+    height: 80px;
+    display: flex;
+    border-radius: 12px;
+    margin: 8px 0;
+    padding: 12px;
+    box-sizing: border-box;
+    background-color: rgba(255,255,255,.76);
+}
+
+.contact_item_avatar {
+    width: 47px;
+    height: 47px;
+    padding-right: 10px;
+}
+
+.contact_item_content {
+    width: calc(100% - 60px);
+}
+
+.chat_wrap {
+    flex-direction: column;
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+    .chat_room_inner{
+        max-height: calc(100vh - 90px);
+        flex: 0 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+        overflow-y: auto;
+        flex-direction: column;
+        display: flex;
+        padding: 0 10px;
+        scrollbar-width: none;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        .message{
+            background-color: aquamarine;
+            display: flex;
+            padding: 12px;
+            border-radius: 12px 12px 12px 0px;
+            max-width: 50%;
+            margin: 8px 4px;
+            min-width: 100px;
+            justify-content: space-between;
+            align-self: flex-start;
+            color: white;
+            background-color: #55125e;
+            box-shadow: 3px 3px #696969;
+            &.mine_message {
+                align-self: flex-end;
+                border-radius: 12px 12px 0px 12px;
+                background-color: #1a8f5c;
+            }
+            &.new_message {
+                background-color: #333;
+            }
+            .date{
+                margin-left: 25px;
+                align-self: flex-end;
+                color: #ccc;
+                font-size: 12px;
+            }
+        }
+    }
+    .send_msg_form_outer{
+        form#send_message{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+            input{width: 100%;}
+            button{margin-left: 20px;}
+        }
+    }
+}

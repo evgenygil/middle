@@ -1,27 +1,22 @@
+include ../../../../components/input/input
+
 block styles
   link(rel="stylesheet", href="~/src/pages/profile/components/form/form.scss")
 
-form
+form(id="profile_form")
   h2 Edit profile
   div.input-wrap.fx.justify-center.items-center
     div.avatar
   div.input-wrap
-    input(placeholder="First Name", name="avatar", type="file")
-  div.input-wrap
-    input(placeholder="First Name", name="first_name", type="text")
-  div.input-wrap
-    input(placeholder="Second Name", name="second_name", type="text")
-  div.input-wrap
-    input(placeholder="Display Name", name="display_name", type="text")
-  div.input-wrap
-    input(placeholder="Login", name="login", type="text")
-  div.input-wrap
-    input(placeholder="Email", name="email", type="text")
-  div.input-wrap
-    input(placeholder="Phone", name="phone", type="text")
-  div.input-wrap
-    input(placeholder="Old Password", name="oldPassword", type="password")
-  div.input-wrap
-    input(placeholder="New Password", name="newPassword", type="password")
+  + input("avatar", "file", "Avatar", "")
+  + input("first_name", "text", "First Name", "first_name")
+  + input("second_name", "text", "Second Name", "second_name")
+  + input("display_name", "text", "Display Name", "")
+  + input("login", "text", "Login", "login")
+  + input("email", "text", "Email", "email")
+  + input("phone", "text", "Phone", "phone")
+  + input("password", "password", "Password", "password")
+  + input("new_password", "password", "New Password", "")
+
   div.input-wrap
     button Save

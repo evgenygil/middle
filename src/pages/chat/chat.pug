@@ -1,9 +1,14 @@
 extends ../../layout/index.pug
 
 block styles
-  link(rel="stylesheet", href="~/src/components/error-page/error-page.scss")
+  link(rel="stylesheet", href="~/src/pages/chat/chat.scss")
 
-include ../../components/error-page/error-page.pug
+block scripts
+  script(src="./index.ts", type="module")
 
 block content
-  +error-page("Chat", "Under construction")
+  .chat_page_wrap
+    aside
+    .chat_wrap
+      .chat_room_outer
+      .send_msg_form_outer

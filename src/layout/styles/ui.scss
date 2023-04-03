@@ -7,7 +7,8 @@ form {
   padding: 20px;
   flex-direction: column;
   border-radius: 5px;
-  max-width: 400px;
+  max-width: 100%;
+  width: 400px;
   a {
     color: white;
     &:hover {
@@ -16,19 +17,32 @@ form {
   }
 }
 
-.input-wrap {
-  padding: 8px 0;
+form {
   input{
     padding: 8px;
     width: 100%;
     border: none;
     border-radius: 5px;
+    border: 2px solid transparent;
+    &.error{
+      border-color: red;
+    }
+  }
+}
+
+.input-wrap {
+  padding: 8px 0;
+  .error-message{
+    color: red;
+    margin-top: 8px;
+    margin-left: 3px;
+    display: block;
   }
 }
 
 button {
   color: white;
-  background-color: #4caf50;
+  background-color: #38853b;
   padding: 8px 20px;
   border: none;
   border-radius: 5px;
