@@ -2,12 +2,17 @@ import BaseBlock from '~/src/utils/BaseBlock';
 import Contact from './components/contact/contact';
 import pug from "pug";
 
+interface ContactsListProps {
+  contactsList: Contact[],
+  contacts: []
+}
+
 export default class ContactsList extends BaseBlock {
   private props: {
     contactsList: Contact[],
     contacts: []
   }
-  constructor(pageProps: any) {
+  constructor(pageProps: ContactsListProps) {
     super(pageProps);
   }
 

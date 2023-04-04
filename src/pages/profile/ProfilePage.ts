@@ -2,12 +2,16 @@ import BaseBlock from '../../utils/BaseBlock';
 // import HTTPTransport from "../../utils/HTTPTransport";
 import Validator from "../../utils/Validator";
 
+interface ProfilePageProps {
+    events: Record<string, () => void>
+}
+
 export default class ProfilePage extends BaseBlock {
     //private httpTransport: HTTPTransport;
     private validator: Validator;
     private form: HTMLFormElement | null;
 
-    constructor(props) {
+    constructor(props: ProfilePageProps) {
         super(props);
     }
  

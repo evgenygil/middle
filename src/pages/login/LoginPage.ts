@@ -1,33 +1,33 @@
 import BaseBlock from '../../utils/BaseBlock';
 // import HTTPTransport from "../../utils/HTTPTransport";
+import LoginFormTemplate from 'bundle-text:./components/form/form.pug';
+import pug from "pug";
+
+interface LoginPageProps {
+    events: Record<string, () => void>
+}
 
 export default class LoginPage extends BaseBlock {
     //private httpTransport: HTTPTransport;
-    private form: HTMLFormElement | null;
-
-    constructor(props) {
+    constructor(props: LoginPageProps) {
+        props.events = {
+            "submit": e => {
+                e.preventDefault();
+                this.submitForm(e);
+            }  
+        };
         super(props);
     }
  
-    init() {
-        // this.httpTransport = new HTTPTransport();
-        this.form = document.querySelector("form#login_form");
-        this.initFormListeners();
-    }
-
-    initFormListeners() {
-        if (this.form) {
-            this.form.addEventListener("submit", e => {
-                e.preventDefault();
-                this.submitForm();
-            });
-        }
-    }
-
-    submitForm() {
-        const loginData = Object.fromEntries(new FormData(this.form));
+    submitForm(e) {
+        const loginData = Object.fromEntries(new FormData(e.currentTarget));
 
         // this.httpTransport.post("login", loginData);
         console.log(loginData);
+    }
+
+    render(){
+        const compileFunction = pug.compile(LoginFormTemplate, {});
+        return this.compile(compileFunction, {});
     }
 }

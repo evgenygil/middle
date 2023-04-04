@@ -1,5 +1,6 @@
 import RegistrationPage from "./registrationPage";
+import {renderDOM} from "../../utils/renderDom";
 
 document.addEventListener("DOMContentLoaded", () => {
-  new RegistrationPage({});
+  renderDOM(".registration_form_outer", new RegistrationPage({}));
 });

@@ -7,13 +7,17 @@ const template =  `form#send_message
   input(name="message" type="text")
   button(type="submit") Submit`;
 
+interface SendMessageFormProps {
+  events: Record<string, () => void>
+}
+
 export default class SendMessageForm extends BaseBlock {
   //private httpTransport: HTTPTransport;
   private validator: Validator;
   private form: HTMLFormElement | null;
   private msgInput: HTMLInputElement | null;
   
-  constructor(props: any) {
+  constructor(props: SendMessageFormProps) {
     props.events = {
       "submit": e => {
         e.preventDefault();

@@ -12,14 +12,14 @@ export default class BaseBlock {
   public id = nanoid(5);
 
   private _element: HTMLElement | null = null;
-  private _meta: { props: any };
+  private _meta: { props: Object };
 
-  protected props: any;
+  protected props: Object;
   protected childrens: Record<string, BaseBlock>;
 
   private eventBus: () => EventBus;
 
-  constructor(propsAndChildrens: any = {}) {
+  constructor(propsAndChildrens: Object = {}) {
     const eventBus = new EventBus();
     const { props, childrens } = this.getPropsAndChildrens(propsAndChildrens);
 
@@ -161,16 +161,7 @@ export default class BaseBlock {
       return;
     }
 
-    console.log(this.props);
-    console.log(events);
-    console.log((this.props as any).events);
-
-
     Object.entries(events).forEach( ([event, listener])  => {
-      
-      console.log(event);
-      console.log(listener);
-      console.log(this._element);
       this._element.addEventListener(event, listener);
     });
   }

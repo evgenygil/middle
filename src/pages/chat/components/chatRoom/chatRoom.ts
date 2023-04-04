@@ -2,12 +2,15 @@ import BaseBlock from '~/src/utils/BaseBlock';
 import Message from './components/Message/Message';
 import pug from "pug";
 
+interface chatRoomProps {
+  messagesList: Message[],
+  messages: Object[]
+}
+
 export default class chatRoom extends BaseBlock {
-  private props: {
-    messagesList: Message[],
-    messages: []
-  }
-  constructor(pageProps: any) {
+  private props: chatRoomProps;
+
+  constructor(pageProps: chatRoomProps) {
     super(pageProps);
   }
 
