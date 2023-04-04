@@ -1,5 +1,6 @@
 import ProfilePage from "./ProfilePage";
+import {renderDOM} from "../../utils/renderDom";
 
 document.addEventListener("DOMContentLoaded", () => {
-  new ProfilePage({});
+    renderDOM(".profile_form_outer", new ProfilePage({}));
 });
