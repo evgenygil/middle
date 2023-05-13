@@ -27,7 +27,8 @@ export default class BaseBlock {
       props
     };
 
-    this.props = this._makePropsProxy({...props, id: this.id});
+    // this.props = this._makePropsProxy({...props, id: this.id});
+    this.props = this._makePropsProxy({...props});
     this.childrens = childrens;
     this.eventBus = () => eventBus;
 
@@ -40,12 +41,19 @@ export default class BaseBlock {
   getPropsAndChildrens(propsAndChildrens: any) {
     const childrens: any = {};
     const props: any = {};
-
+    // console.log(propsAndChildrens);
     Object.entries(propsAndChildrens).forEach(([key, value]) => {
-      if (value instanceof BaseBlock) {
-        childrens[key] = value;
+      if (key == "childrens") {
+        // childrens = {...childrens, ...value};
+        // console.log(childrens);
+        // console.log(value);
+        Object.assign(childrens, value);
       } else {
-        props[key] = value;
+        if (value instanceof BaseBlock) {
+          childrens[key] = value;
+        } else {
+          props[key] = value;
+        }
       }
     });
 
@@ -76,6 +84,8 @@ export default class BaseBlock {
   dispatchComponentDidMount() {}
 
   _componentDidUpdate(oldProps: any, newProps: any) {
+    // console.log(oldProps);
+    // console.log(newProps);
     if (this.componentDidUpdate(oldProps, newProps)){
       this.eventBus().emit(BaseBlock.EVENTS.FLOW_RENDER);
     };
@@ -104,7 +114,7 @@ export default class BaseBlock {
       this._removeEvents();
       this._element.replaceWith(newElement);
     }
-
+    // console.log(this._meta);
     this._element = newElement;
     this._addEvents();
   }
@@ -150,7 +160,9 @@ export default class BaseBlock {
     }
 
     Object.entries(events).forEach( ([event, listener])  => {
-      this._element.removeEventListener(event, listener);
+      // console.log(event);
+      // console.log(listener);
+      // this._element.removeEventListener(event, listener);
     });
   }
 
@@ -162,6 +174,8 @@ export default class BaseBlock {
     }
 
     Object.entries(events).forEach( ([event, listener])  => {
+      // console.log(event);
+      // console.log(listener);
       this._element.addEventListener(event, listener);
     });
   }
@@ -181,9 +195,14 @@ export default class BaseBlock {
       viewParams[key] = `<div data-id="id-${child.id}"></div>`;
     });
 
+    // console.log(viewParams);
+    // console.log(this.childrens);
     const htmlString = template(viewParams);
+    // console.log(htmlString);
 
     fragment.innerHTML = htmlString;
+
+    // console.log(this.childrens);
 
     Object.entries(this.childrens).forEach(([key, child]) => {
       if (Array.isArray(child)) {
@@ -197,7 +216,11 @@ export default class BaseBlock {
         return;  
       }
 
+      // console.log(child);
+
       const stub = fragment.content.querySelector(`[data-id="id-${child.id}"]`);
+
+      // console.log(stub);
 
       if (!stub){
         return;
@@ -207,6 +230,16 @@ export default class BaseBlock {
     });
 
     return fragment.content;
+  }
+
+  public show(): void {
+      const content = this.getContent();
+      if (content) content.style.display = '';
+  }
+
+  public hide(): void {
+      const content = this.getContent();
+      if (content) content.style.display = 'none';
   }
 
 }

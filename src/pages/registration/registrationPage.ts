@@ -1,5 +1,5 @@
 import BaseBlock from '../../utils/BaseBlock';
-// import HTTPTransport from "../../utils/HTTPTransport";
+import UsersController from '../../controllers/UsersController';
 import RegistrationFormTemplate from 'bundle-text:./components/form/form.pug';
 import pug from "pug";
 import Validator from "../../utils/Validator";
@@ -9,7 +9,6 @@ interface RegistrationPageProps {
 }
 
 export default class RegistrationPage extends BaseBlock {
-    //private httpTransport: HTTPTransport;
     private validator: Validator;
 
     constructor(props: RegistrationPageProps) {
@@ -24,14 +23,14 @@ export default class RegistrationPage extends BaseBlock {
     }
 
     submitForm(e) {
-        if (!this.validator.validateForm(e.currentTarget)) {
+        const form = e.target;
+        if (!this.validator.validateForm(form)) {
             return;
         }
 
-        const registrationData = Object.fromEntries(new FormData(e.currentTarget));
-
-        // this.httpTransport.post("registration", registrationData);
-        console.log(registrationData);
+        const registrationData = Object.fromEntries(new FormData(form));
+        delete registrationData.confirm_password;
+        UsersController.createUser(registrationData);
     }
 
     render(){

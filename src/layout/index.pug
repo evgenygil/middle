@@ -2,8 +2,10 @@ html(lang="en")
   head
     title PartyChat
     link(rel="stylesheet", href="~/src/layout/common.scss")
+    link(rel="stylesheet", href="~/src/pages/chat/chat.scss")
     block styles
   body
     main#root
       block content
-    block scripts
+    //- block scripts
+    script(src="~/src/layout/index.ts", type="module")

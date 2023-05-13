@@ -1,9 +1,10 @@
 include ../../../../components/input/input
 
-form(id="login_form")
-  h2 Login
-  + input("login", "text", "Login")
-  + input("password", "password", "Password")
-  div.input-wrap.fx.justify-between.items-center
-    button Sign In
-    a(href="#") Sign Up
+div.fx.justify-center.items-center.h-100vh.login_form_outer
+  form(id="login_form")
+    h2 Login
+    + input("login", "text", "Login", "login")
+    + input("password", "password", "Password")
+    div.input-wrap.fx.justify-between.items-center
+      button Sign In
+      a(href="/sign-up") Sign Up

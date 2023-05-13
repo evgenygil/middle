@@ -1,13 +1,14 @@
 include ../../../../components/input/input
 
-form(id="registration_form")
-  h2 Registration
-  + input("first_name", "text", "First Name", "first_name")
-  + input("second_name", "text", "Second Name", "second_name")
-  + input("login", "text", "Login", "login")
-  + input("email", "text", "Email", "email")
-  + input("phone", "text", "Phone", "phone")
-  + input("password", "password", "Password", "password")
-  + input("confirm_password", "password", "Confirm Password", "")
-  div.input-wrap
-    button Sign Up
+div.fx.justify-center.items-center.h-100vh.registration_form_outer
+  form(id="registration_form")
+    h2 Registration
+    + input("first_name", "text", "First Name", "first_name")
+    + input("second_name", "text", "Second Name", "second_name")
+    + input("login", "text", "Login", "login")
+    + input("email", "text", "Email", "email")
+    + input("phone", "text", "Phone", "phone")
+    + input("password", "password", "Password", "password")
+    + input("confirm_password", "password", "Confirm Password", "")
+    div.input-wrap
+      button Sign Up

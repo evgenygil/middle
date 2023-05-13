@@ -2,37 +2,54 @@ import BaseBlock from '~/src/utils/BaseBlock';
 import Contact from './components/contact/contact';
 import pug from "pug";
 
-interface ContactsListProps {
-  contactsList: Contact[],
-  contacts: []
-}
+import { State } from '~/src/utils/Store';
+import { connect } from '~/src/utils/connect';
+import addChatForm from '../addChatForm/addChatForm';
 
-export default class ContactsList extends BaseBlock {
+class ContactsList extends BaseBlock {
   private props: {
-    contactsList: Contact[],
-    contacts: []
-  }
-  constructor(pageProps: ContactsListProps) {
-    super(pageProps);
+    childrens: {} | undefined,
+    currentChat: number | undefined, 
+    chats: [],
+    addChatForm: addChatForm
   }
 
-  initChildren() {
-    if (this.props.contacts.length > 0) { 
-      const contactsList = [];
-      this.props.contacts.forEach(contact => {
-        contactsList.push(new Contact(contact));
-      });
-      this.setProps({contactsList: contactsList});
+  private childrens: {};
+
+  constructor(props: any) {
+    super(props);
+  }
+
+  static getStateToProps(state: State) {
+    let props = {};
+    if (state?.chats) {
+      props = {
+        chats: state.chats,
+        currentChat: state?.currentChat?.chat?.id,
+      };
     }
+    return props;
   }
 
   render() {
-    let contactsHtml = "";
-    this.props.contactsList.forEach(element => {
-      contactsHtml += element.getContent().outerHTML;
-    });
+    const compileFunction = pug.compile(`.contact_list
+    each chat_id in chats
+      div(data-id='id-' + chat_id)`);
+    if (this.props.chats?.length > 0) {
+      this.childrens = this.props.chats.reduce( (chats: {}, chat: {}) => {
+        chats[`chat_${chat.id}`] = new Contact({...chat});
+        return chats;
+      }, {});
+    }
 
-    const compileFunction = pug.compile("<div class='contact_list'>" + contactsHtml + "</div>");
-    return this.compile(compileFunction, {});
+    let chatsIds = [];
+    if (Object.keys(this.childrens).length > 0) { 
+      chatsIds = Object.entries(this.childrens).map( (value) => {
+        return value[1].id;
+      });
+    }
+    return this.compile(compileFunction, {chats: chatsIds});
   }
 }
+
+export default connect(ContactsList);

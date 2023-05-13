@@ -1,5 +1,6 @@
 import BaseBlock from '../../utils/BaseBlock';
-// import HTTPTransport from "../../utils/HTTPTransport";
+import Validator from '../../utils/Validator';
+import UsersController from '../../controllers/UsersController';
 import LoginFormTemplate from 'bundle-text:./components/form/form.pug';
 import pug from "pug";
 
@@ -8,7 +9,8 @@ interface LoginPageProps {
 }
 
 export default class LoginPage extends BaseBlock {
-    //private httpTransport: HTTPTransport;
+    private validator: Validator;
+
     constructor(props: LoginPageProps) {
         props.events = {
             "submit": e => {
@@ -17,13 +19,18 @@ export default class LoginPage extends BaseBlock {
             }  
         };
         super(props);
+        this.validator = new Validator();
     }
  
-    submitForm(e) {
-        const loginData = Object.fromEntries(new FormData(e.currentTarget));
+    async submitForm(e) {
+        const form = e.target;
+        
+        if (!this.validator.validateForm(form)) {
+            return;
+        }
 
-        // this.httpTransport.post("login", loginData);
-        console.log(loginData);
+        const loginData = Object.fromEntries(new FormData(form));
+        UsersController.login(loginData);
     }
 
     render(){
